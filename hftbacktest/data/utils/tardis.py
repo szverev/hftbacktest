@@ -133,6 +133,8 @@ def convert(
                             row_num += 1
                             # Add DEPTH_SNAPSHOT_EVENT for the bid snapshot
                             tmp[row_num:row_num + len(ss_bid)] = ss_bid[:]
+                            # Increase the tmp array index, so we don't erase the bid snapshot with further lines
+                            row_num += ss_bid_rn
                             # Clear the ask market depth within the snapshot ask range.
                             tmp[row_num] = [
                                 3,
@@ -145,6 +147,8 @@ def convert(
                             row_num += 1
                             # Add DEPTH_SNAPSHOT_EVENT for the ask snapshot
                             tmp[row_num:row_num + len(ss_ask)] = ss_ask[:]
+                            # Increase the tmp array index, so we don't erase the ask snapshot with further lines
+                            row_num += ss_ask_rn
                         # Insert DEPTH_EVENT
                         tmp[row_num] = [
                             1,
